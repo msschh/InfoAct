@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ro.lexit.app.dao.filmInd.DaoFilm">
+
+	<!-- ================================== -->
+	<!-- ==  SQL 						 == -->
+	<!-- ================================== -->	
+	
+	<sql id="sqlSelect">
+		select 
+			FLM.*,
+			ACF.PERSONAJ as PERSONAJ,
+		    (select ATA.URL
+		    from ATASAMENT ATA
+		    where ATA.ID_DOCUMENT = FLM.ID_DOCUMENT and rownum = 1) as ATA_URL
+            <include refid="maps.fieldsDocument"/>
+	</sql>
+	
+	<sql id="sqlFrom">
+		from 
+			FILM FLM
+			left join DOCUMENT DOC on FLM.ID_DOCUMENT = DOC.ID
+			left join ACTOR_FILM ACF on FLM.ID = ACF.ID_FILM
+			left join FAVORIT FAV on FLM.ID = FAV.ID_FILM
+	</sql>
+	
+	<sql id="sqlWhere">
+		<if test="qry != null and qry.filter != null">
+			where 1 = 1
+			<if test="qry.filter.nume != null and qry.filter.nume != ''" >
+				and lower(FLM.NUME) like lower(#{qry.filter.nume})
+			</if>
+			<if test="qry.filter.actor != null and qry.filter.actor.id != null" >
+				and ACF.ID_ACTOR = #{qry.filter.actor.id}
+			</if>
+			<if test="qry.filter.user != null and qry.filter.user.id != null" >
+				and FAV.ID_USER = #{qry.filter.user.id}
+			</if>
+		</if>
+	</sql>
+	
+	<sql id="sqlOrderBy">
+		<if test="qry == null or qry.sorter == null">
+			order by lower(FLM.NUME) asc
+		</if>
+	</sql>
+	
+	<!-- ================================= -->
+	<!-- ==  READ  					 	== -->
+	<!-- ================================= -->		
+		
+	<select id="readRecordCount" resultType="int">
+		select count(FLM.ID)
+		<include refid="sqlFrom"></include>
+		<include refid="sqlWhere"></include>
+	</select>
+		
+	<select id="readList" resultMap="maps.Film">
+		<include refid="sqlSelect"></include>
+		<include refid="sqlFrom"></include>
+		<include refid="sqlWhere"></include>
+		<include refid="sqlOrderBy"></include>
+	</select>
+			
+	<select id="read" resultMap="maps.Film">
+		<include refid="sqlSelect"></include>
+		<include refid="sqlFrom"></include>
+		where FLM.ID = #{id}
+	</select>
+	
+	<!-- ================================== -->
+	<!-- ==  CREATE / UPDATE / DELETE	 == -->
+	<!-- ================================== -->	
+	
+	<delete id="delete">
+		delete from FILM where id = #{id}
+	</delete>
+	
+	<update id="update" parameterType="Film">
+		update FILM
+     	set 
+     		  NUME = #{record.nume}
+			, GENURI = #{record.genuri}
+			, DT = #{record.dt}
+			, DESCRIERE = #{record.descriere}
+		where
+			ID = #{record.id}
+   </update>
+   
+   	<insert id="create" useGeneratedKeys="true" >
+		<selectKey keyProperty="record.id" resultType="int" order="BEFORE">
+			select SEQ_FILM.NEXTVAL from DUAL
+		</selectKey>
+		insert into FILM(
+			  ID
+			, NUME
+			, GENURI
+			, DT
+			, ID_DOCUMENT
+			, DESCRIERE
+		) values(
+			  #{record.id}
+			, #{record.nume}
+			, #{record.genuri}
+			, #{record.dt}
+			, #{record.document.id}
+			, #{record.descriere}
+		)
+   </insert>
+
+</mapper>

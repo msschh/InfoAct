@@ -1,0 +1,67 @@
+#divDrepturi {
+	position: relative;
+}
+
+#divDrepturi p {
+	color: #808080;
+	cursor: pointer;
+	font: 16px bold;
+	margin-bottom: 18px;
+	margin-left: 10px;
+}
+
+#divDrepturi p:before {
+	content: "+";
+	margin-right: 4px;
+	color: blue;
+}
+
+#divDrepturi p.active {
+	color: black;
+	margin-left: 14px;
+	font-weight: bold;
+}
+
+#divDrepturi p.active:before {
+	content: "-";
+	margin-right: 3px;
+	color: blue;
+}
+
+#divDrepturi .drepturiHidden ul {
+	display: block;
+	padding-left: 10px;
+	padding-top: 8px;
+}
+
+#divDrepturi ul {
+	display: none;
+}
+
+#divDrepturi li span {
+	padding-left: 10px;
+	color: #808080;
+}
+
+#divDrepturi li {
+	list-style-type: none;
+	margin-bottom: 13px;
+	cursor: pointer;
+}
+
+#divDrepturi li span.active {
+	color: black;
+	padding-left: 10px;
+	font-weight: bold;
+}
+
+#divDrepturi .drepturiHidden {
+	border: 1px solid;
+	border-color: silver;
+	visibility: hidden;
+	position: absolute;
+	top: 0px;
+	left: 50%;
+	width: 40%;
+	height: 100%;
+}

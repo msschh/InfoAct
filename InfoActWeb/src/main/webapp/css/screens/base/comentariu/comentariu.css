@@ -1,0 +1,32 @@
+.comentariu {
+	margin-bottom: 15px;
+}	
+
+.comentariu header {
+	padding-left: 8px;
+	color: gray;
+	font-size: 10pt;
+	margin-bottom: 5px;
+}	
+
+.comentariu main {
+	border: solid 1px #0070d0;
+	padding-top: 5px;	
+	padding-bottom: 5px;
+	padding-right: 5px;	
+	border-radius: 4px;
+	background-color: #f5fcfe;
+	color: #0070d0;
+	font-style: italic;
+}
+.comentariu article {
+	float: left;
+	width: 970px;
+	white-space: pre-wrap;
+	padding-left: 8px;
+}
+
+.comentariu .action {
+	float: right; 
+	width: 25px; 
+}

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ro.lexit.app.dao.admin.DaoUtilizator">
+
+	<resultMap type="Utilizator" id="mapUtilizator" autoMapping="true">
+		<id property="id" column="ID_UTILIZATOR" />
+		<result property="nume" column="NUME_UTILIZATOR" />
+        <association property="document" javaType="Document" resultMap="maps.Document" columnPrefix="DOC_" />
+	</resultMap>
+	
+	<sql id="sqlSelect">
+		select
+			  U.ID as ID_UTILIZATOR
+			, U.NUME as NUME_UTILIZATOR
+			, U.USERNAME
+			, U.PAROLA
+			, U.EMAIL
+            <include refid="maps.fieldsDocument"/>
+	</sql>
+
+	<sql id="sqlFrom">
+		from 
+			UTILIZATOR U
+			left join UTILIZATOR_ROL UTROL on U.ID = UTROL.ID_UTILIZATOR
+			left join DOCUMENT DOC on U.ID_DOCUMENT = DOC.ID
+	</sql>
+
+	<sql id="sqlWhere">
+		<if test="qry != null and qry.filter != null">
+			where 1 = 1
+			<if test="qry.filter.nume != null and qry.filter.nume != ''" >
+				and lower(U.NUME) like lower(#{qry.filter.nume})
+			</if>
+			<if test="qry.filter.username != null and qry.filter.username != ''" >
+				and lower(U.USERNAME) like lower(#{qry.filter.username})
+			</if>
+			<if test="qry.filter.email != null and qry.filter.email != ''" >
+				and lower(U.EMAIL) like lower(#{qry.filter.email})
+			</if>
+			<if test="qry.filter.rol != null and qry.filter.rol.id != null">
+				and UTROL.ID_ROL =  #{qry.filter.rol.id}
+			</if>
+		</if>
+	</sql>
+	
+	<sql id="sqlOrderBy">
+		 <if test="qry == null or qry.sorter == null">
+        	order by lower(U.NUME) asc
+        </if>
+		<if test="qry != null and qry.sorter != null and qry.sorter.sorterField != null and qry.sorter.sorterDirection != null">
+			order by
+		 	<if test="qry.sorter.sorterField == 'nume'">
+		 		lower(U.NUME) ${qry.sorter.sorterDirection}
+		 	</if>
+		 	<if test="qry.sorter.sorterField == 'username'">
+		 		lower(U.USERNAME) ${qry.sorter.sorterDirection}
+		 	</if>		 	
+		</if>
+	</sql>
+	
+	<select id="readRecordCount" resultType="int">
+		select count(U.ID)
+		<include refid="sqlFrom"></include>
+		<include refid="sqlWhere"></include>
+	</select>
+	
+	<select id="readList" resultMap="mapUtilizator">
+		<include refid="sqlSelect"></include>
+		<include refid="sqlFrom"></include>
+		<include refid="sqlWhere"></include>
+		<include refid="sqlOrderBy"></include>
+	</select>
+
+	<select id="read" resultMap="mapUtilizator">
+		<include refid="sqlSelect"></include>
+		<include refid="sqlFrom"></include>
+		where U.ID = #{id}
+	</select>
+	
+	
+	<delete id="delete">
+		delete from UTILIZATOR where ID = #{id}
+	</delete>
+	
+	<update id="update" parameterType="Utilizator">
+		update UTILIZATOR
+		set
+			  USERNAME = #{record.username}
+			, NUME = #{record.nume}
+			, PAROLA = #{record.parola}
+			, EMAIL = #{record.email}
+		where
+			ID = #{record.id}
+	</update>
+	
+	<insert id="create" useGeneratedKeys="true" >
+		<selectKey keyProperty="record.id" resultType="int" order="BEFORE">
+			select SEQ_UTILIZATOR.NEXTVAL from DUAL
+		</selectKey>
+		insert into UTILIZATOR(ID, USERNAME, PAROLA, NUME, EMAIL, ID_DOCUMENT)
+		values(#{record.id}, #{record.username}, #{record.parola}, #{record.nume}, #{record.email}, #{record.document.id})
+	</insert>
+	
+    <insert id="createRoluri" useGeneratedKeys="true" >
+        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+            select SEQ_UTILIZATOR_ROL.NEXTVAL from DUAL
+        </selectKey>
+        insert into UTILIZATOR_ROL(ID, ID_UTILIZATOR, ID_ROL)
+        values (#{id}, #{idUtilizator}, #{idRol})
+    </insert>
+
+    <delete id="deleteRoluri">
+		delete from UTILIZATOR_ROL where ID_UTILIZATOR = #{idUtilizator}
+	</delete>
+</mapper>

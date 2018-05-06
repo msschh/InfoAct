@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ro.lexit.app.dao.base.DaoAtasament">
+
+    <!-- ================================== -->
+    <!-- ==  SQL						 == -->
+    <!-- ================================== -->
+    
+	<sql id="sqlSelect">
+		select 
+			ATAS.*
+            <include refid="maps.fieldsDocument"/>
+	</sql>
+	
+	<sql id="sqlFrom">
+		from 
+			ATASAMENT ATAS
+			left join DOCUMENT DOC on ATAS.ID_DOCUMENT = DOC.ID
+	</sql>
+	
+	<sql id="sqlWhere">
+		<if test="qry != null and qry.filter != null">
+			where 1 = 1
+			<if test="qry.filter.document != null and qry.filter.document.id != null" >
+				and ATAS.ID_DOCUMENT = #{qry.filter.document.id}
+			</if>			
+		</if>
+	</sql>
+	
+    <!-- ================================== -->
+    <!-- ==  READ						 == -->
+    <!-- ================================== -->
+    	
+	<select id="readRecordCount" resultType="int">
+		select count(ATAS.ID)
+		<include refid="sqlFrom"></include>
+		<include refid="sqlWhere"></include>
+	</select>
+		
+	<select id="readList" resultMap="maps.Atasament">
+		<include refid="sqlSelect"></include>
+		<include refid="sqlFrom"></include>
+		<include refid="sqlWhere"></include>
+		order by ATAS.ID
+	</select>
+			
+	<select id="read" resultMap="maps.Atasament">
+		<include refid="sqlSelect"></include>
+		<include refid="sqlFrom"></include>
+		where ATAS.ID = #{id}
+	</select>
+	
+    <!-- ================================== -->
+    <!-- ==  CREATE / UPDATE / DELETE	 == -->
+    <!-- ================================== -->
+    	
+	<delete id="delete">
+		delete from ATASAMENT where ID = #{id}
+	</delete>
+   
+   	<insert id="create" useGeneratedKeys="true" >
+		<selectKey keyProperty="record.id" resultType="int" order="BEFORE">
+			select SEQ_ATASAMENT.NEXTVAL from DUAL
+		</selectKey>
+		insert into ATASAMENT (
+			  ID
+			, ID_DOCUMENT
+			, ID_UTILIZATOR
+			, DT_UPLOAD
+			, URL
+		) values (
+			  #{record.id}
+			, #{record.document.id}  
+			, #{record.creatDe.id}
+			, sysdate
+			, #{record.url}
+		)
+   </insert>
+
+</mapper>

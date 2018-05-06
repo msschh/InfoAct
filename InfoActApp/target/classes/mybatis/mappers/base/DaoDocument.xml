@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ro.lexit.app.dao.base.DaoDocument">
+
+	<select id="readList" resultType="Document">
+		select * from DOCUMENT
+	</select>
+
+	<select id="read" resultType="Document">
+		select * from DOCUMENT where ID = #{id}
+	</select>
+	
+	<insert id="create" useGeneratedKeys="true">
+		<selectKey keyProperty="record.id" resultType="int" order="BEFORE">
+			select SEQ_DOCUMENT.NEXTVAL from DUAL
+		</selectKey>
+		insert into DOCUMENT(
+			  ID
+			, TIP  
+		) values (
+			#{record.id},
+			#{record.tip})
+	</insert>
+	
+	<delete id="delete">
+		delete from DOCUMENT where ID = #{id}
+	</delete>
+</mapper>

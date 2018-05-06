@@ -1,0 +1,58 @@
+#divContainer {
+	margin: auto;
+	margin-top: 100px;
+	width: 525px;
+	border: 1px solid #aaaaaa;
+	border-radius: 5px;	
+	padding: 5px;
+	padding-bottom: 15px;
+	background-color: white;
+	overflow: auto;
+}
+
+#divHeader {
+	background-color: #0065a0;
+	margin-bottom: 10px;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	overflow: auto;
+	padding: 8px;
+	color: white;
+}
+
+#divImage {
+	float: left; 
+	width: 160px; 
+	padding-top: 25px; 
+	padding-bottom: 10px; 
+	padding-left: 10px;
+}
+
+#divBody {
+	padding-left: 10px;
+	text-align: center;
+	float: left; 
+	border-left: solid 1px silver; 
+	width: 330px;
+	margin-top: 10px;
+	margin-bottom: 10px;	
+}
+
+#divBody button {
+	margin-left: 4px;
+	margin-right: 4px;
+	width: 130px;
+}
+
+#divBody td {
+	padding-left: 30px;
+	padding-top: 10px;
+}
+
+#divFootnote {
+	margin-top: 5px;
+    text-align: center;
+    font-size: 10pt;
+    color: #707070;
+}
+

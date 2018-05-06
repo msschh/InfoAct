@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ro.lexit.app.dao.admin.DaoRol">
+
+	<!-- ================================== -->
+	<!-- ==  SQL for SELECT  			 == -->
+	<!-- ================================== -->	
+	
+	<sql id="sqlSelect">select *</sql>
+	<sql id="sqlFrom">from ROL R</sql>
+	<sql id="sqlWhere">
+		<if test="qry != null and qry.filter != null">
+			where 1 = 1
+			<if test="qry.filter.cod != null and qry.filter.cod != ''" >
+				and lower(R.COD) like lower(#{qry.filter.cod})
+			</if>
+			<if test="qry.filter.nume != null and qry.filter.nume != ''" >
+				and lower(R.NUME) like lower(#{qry.filter.nume})
+			</if>
+			<if test="qry.filter.utilizator != null and qry.filter.utilizator.id != null" >
+				and R.ID in (select ID_ROL from UTILIZATOR_ROL where ID_UTILIZATOR = #{qry.filter.utilizator.id})
+			</if>
+		</if>
+	</sql>
+	<sql id="sqlOrderBy">
+        <if test="qry == null or qry.sorter == null">
+        	order by lower(R.NUME) asc
+        </if>	
+	</sql>
+	
+	<!-- ================================== -->
+	<!-- ==  SELECT  					 == -->
+	<!-- ================================== -->		
+		
+	<select id="readRecordCount" resultType="int">
+		select count(ID)
+		<include refid="sqlFrom"></include>
+		<include refid="sqlWhere"></include>
+	</select>
+		
+	<select id="readList" resultType="Rol">
+		<include refid="sqlSelect"></include>
+		<include refid="sqlFrom"></include>
+		<include refid="sqlWhere"></include>
+		<include refid="sqlOrderBy"></include>
+	</select>
+			
+	<select id="read" resultType="Rol">
+		<include refid="sqlSelect"></include>
+		<include refid="sqlFrom"></include>
+		where R.ID = #{id}
+	</select>
+	
+	<!-- ================================== -->
+	<!-- ==  CREATE / UPDATE / DELETE	 == -->
+	<!-- ================================== -->	
+		
+	<delete id="delete">
+		delete from ROL where ID = #{id}
+	</delete>
+	
+	<update id="update" parameterType="Rol">
+		update ROL
+     	set 
+     		  COD = #{record.cod}
+     		, NUME = #{record.nume}
+     		, MEMO = #{record.memo}
+		where 
+			ID = #{record.id}
+   </update>
+   
+   	<insert id="create" useGeneratedKeys="true" >
+		<selectKey keyProperty="record.id" resultType="int" order="BEFORE">
+			select SEQ_ROL.NEXTVAL from DUAL
+		</selectKey>
+		insert into ROL(ID, COD, NUME, MEMO)
+		values (#{record.id}, #{record.cod}, #{record.nume}, #{record.memo})
+   </insert>
+
+	<insert id="createDrepturi" useGeneratedKeys="true" >
+        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+            select SEQ_ROL_DREPT.NEXTVAL from DUAL
+        </selectKey>
+        insert into ROL_DREPT(ID, ID_DREPT, ID_ROL)
+        values (#{id}, #{idDrept}, #{idRol})
+    </insert>
+    
+    <delete id="deleteDrepturi">
+		delete from ROL_DREPT where ID_ROL = #{idRol}
+	</delete>
+</mapper>

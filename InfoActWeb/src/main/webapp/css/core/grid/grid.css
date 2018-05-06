@@ -1,0 +1,45 @@
+.tblGrid
+{
+	width: 100%;	
+	border-collapse: collapse;
+	font-family: sans-serif;	
+	margin-bottom: 15px; 
+} 
+
+.tblGrid td
+{
+	border-bottom: 1px solid silver;	
+	padding-top: 4px;
+	padding-bottom: 0px;
+	padding-left: 3px;	
+	height: 32px;
+} 
+
+.tblGrid th
+{
+	border-bottom: 3px double silver;
+	font-weight: normal;
+	font-size: 13pt;	
+	padding-bottom: 5px;
+	padding-left: 3px;	
+} 
+
+.tblGrid th.sortable,
+.tblGrid th.asc,
+.tblGrid th.desc {
+	background-position: left 2px;
+    background-repeat: no-repeat; 
+    padding-left: 20px;
+    cursor: pointer;
+} 
+
+.tblGrid th.sortable:HOVER,
+.tblGrid th.asc:HOVER,
+.tblGrid th.desc:HOVER {
+	color: gray;
+}
+
+.tblGrid th.sortable { background-image: url(img/both.png); }
+.tblGrid th.asc { background-image: url(img/up.png); }
+.tblGrid th.desc { background-image: url(img/down.png); }
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ro.lexit.app.dao.admin.DaoDrept">
+
+	<sql id="sqlWhere">
+		<if test="qry != null and qry.filter != null">
+			where 1 = 1
+			<if test="qry.filter.rol != null and qry.filter.rol.id != null" >
+				and D.ID in (select ID_DREPT from ROL_DREPT where ID_ROL = #{qry.filter.rol.id})
+			</if>
+			<if test="qry.filter.utilizator != null and qry.filter.utilizator.id != null" >
+				and D.ID in (
+				select ROL_DREPT.ID_DREPT
+				from ROL_DREPT 
+				left join UTILIZATOR_ROL on ROL_DREPT.ID_ROL = UTILIZATOR_ROL.ID_ROL
+				where UTILIZATOR_ROL.ID_UTILIZATOR = #{qry.filter.utilizator.id})
+			</if>
+		</if>
+	</sql>
+	
+    <select id="readList" resultType="Drept">
+		select * from DREPT D
+		<include refid="sqlWhere"></include>	
+		order by D.ENTITATE asc, D.COD asc		
+	</select>
+		
+    <select id="read" resultType="Drept">
+		select * from DREPT where ID = #{id}
+	</select>
+
+</mapper>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ro.lexit.app.dao.filmInd.DaoActor">
+
+	<!-- ================================== -->
+	<!-- ==  SQL 						 == -->
+	<!-- ================================== -->	
+	
+	<sql id="sqlSelect">
+		select 
+			ACT.*,
+			ACF.PERSONAJ as PERSONAJ,
+			(select ATA.URL
+		    from ATASAMENT ATA
+		    where ATA.ID_DOCUMENT = ACT.ID_DOCUMENT and rownum = 1) as ATA_URL
+            <include refid="maps.fieldsDocument"/>
+	</sql>
+	
+	<sql id="sqlFrom">
+		from 
+			ACTOR ACT
+			left join DOCUMENT DOC on ACT.ID_DOCUMENT = DOC.ID
+			left join ACTOR_FILM ACF on ACT.ID = ACF.ID_ACTOR
+	</sql>
+	
+	<sql id="sqlWhere">
+		<if test="qry != null and qry.filter != null">
+			where 1 = 1
+			<if test="qry.filter.nume != null and qry.filter.nume != ''" >
+				and lower(ACT.NUME) like lower(#{qry.filter.nume})
+			</if>
+			<if test="qry.filter.film != null and qry.filter.film.id != null" >
+				and ACF.ID_FILM = #{qry.filter.film.id}
+			</if>
+		</if>
+	</sql>
+	
+	<sql id="sqlOrderBy">
+		<if test="qry == null or qry.sorter == null">
+			order by lower(ACT.NUME) asc
+		</if>
+	</sql>
+	
+	<!-- ================================= -->
+	<!-- ==  READ  					 	== -->
+	<!-- ================================= -->		
+		
+	<select id="readRecordCount" resultType="int">
+		select count(ACT.ID)
+		<include refid="sqlFrom"></include>
+		<include refid="sqlWhere"></include>
+	</select>
+		
+	<select id="readList" resultMap="maps.Actor">
+		<include refid="sqlSelect"></include>
+		<include refid="sqlFrom"></include>
+		<include refid="sqlWhere"></include>
+		<include refid="sqlOrderBy"></include>
+	</select>
+			
+	<select id="read" resultMap="maps.Actor">
+		<include refid="sqlSelect"></include>
+		<include refid="sqlFrom"></include>
+		where ACT.ID = #{id}
+	</select>
+	
+	<!-- ================================== -->
+	<!-- ==  CREATE / UPDATE / DELETE	 == -->
+	<!-- ================================== -->	
+	
+	<delete id="delete">
+		delete from ACTOR where id = #{id}
+	</delete>
+	
+	<update id="update" parameterType="Actor">
+		update ACTOR
+     	set 
+     		  NUME = #{record.nume}
+			, DT_NASTERE = #{record.dtNastere}
+			, LOC_NASTERE = #{record.locNastere}
+			, DESCRIERE = #{record.descriere}
+		where
+			ID = #{record.id}
+   </update>
+   
+   	<insert id="create" useGeneratedKeys="true" >
+		<selectKey keyProperty="record.id" resultType="int" order="BEFORE">
+			select SEQ_ACTOR.NEXTVAL from DUAL
+		</selectKey>
+		insert into ACTOR(
+			  ID
+			, NUME
+			, DT_NASTERE
+			, LOC_NASTERE
+			, ID_DOCUMENT
+			, DESCRIERE
+		) values(
+			  #{record.id}
+			, #{record.nume}
+			, #{record.dtNastere}
+			, #{record.locNastere}
+			, #{record.document.id}
+			, #{record.descriere}
+		)
+   </insert>
+
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ro.lexit.app.dao.filmInd.DaoFavorit">
+
+    <select id="read" resultType="java.lang.Integer">
+		select sum(ID)
+		from FAVORIT
+		where ID_FILM = #{idFilm} and ID_USER = #{idUser}
+	</select>
+	
+    <delete id="delete">
+		delete from FAVORIT where ID_USER = #{idUser} and ID_FILM = #{idFilm}
+	</delete>
+   
+   	<insert id="create" useGeneratedKeys="true" >
+        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+            select SEQ_FAVORIT.NEXTVAL from DUAL
+        </selectKey>
+		insert into FAVORIT(
+			  ID
+			, ID_USER
+			, ID_FILM
+		) values(
+			  #{id}
+			, #{idUser}
+			, #{idFilm}
+		)
+   </insert>
+</mapper>

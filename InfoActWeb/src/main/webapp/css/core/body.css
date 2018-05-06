@@ -1,0 +1,115 @@
+body {
+	font-family: sans-serif, Verdana, Tahoma,"Trebuchet MS";
+	font-size: 11pt;
+	background-color: #eeeeee
+}
+
+table {
+	font-size: 11pt;
+}
+
+input[type=checkbox] {
+	margin: 8px 3px 8px 0px;
+}
+
+input[type=text], input[type=password] {
+	font-family: sans-serif;
+	font-size: 11pt;
+	border-radius: 3px;	
+	border: solid 1px #0070d0;
+	padding: 3px 5px 3px 5px;
+	color: #0070d0;
+}
+
+input[type=text][disabled] {
+	border-color: #aaaaaa;
+	background-color: white;
+	color: gray;
+}
+
+textarea {
+	font-family: sans-serif;
+	font-size: 11pt;
+	border-radius: 3px;	
+	/* border: solid 1px #0050a0; */
+	border: solid 1px #0070d0;
+	
+	padding-top: 5px; padding-bottom: 5px;
+	padding-left: 5px; padding-right: 5px;
+	color: #0070d0;
+}
+
+textarea[disabled] {
+	border-color: #aaaaaa;
+	background-color: white;
+	color: gray;
+}
+
+select {
+	font-family: sans-serif;
+	font-size: 11pt;
+	border-radius: 3px;	
+	border: solid 1px #0070d0;
+	padding: 2px 1px 2px 1px;
+	color: #0070d0;
+}
+
+select[disabled] {
+	border-color: #aaaaaa;
+	background-color: white;
+	color: gray;
+}
+
+button {
+    color: #0070d0;
+    background-color: white;
+    cursor: hand;
+    border: 1px solid gray;    
+    padding-top: 4px; 
+    padding-bottom: 4px;
+    padding-left: 12px; 
+    padding-right: 10px; 
+    border-radius: 3px;	
+}
+
+button:hover {
+	border-color: black;
+	border-bottom-color: black;
+	background-color: #efefef;
+}
+
+a, a:ACTIVE, a:VISITED {
+	color: #0070d0;
+	text-decoration: none;
+}
+
+input.err {
+	border-color: red;
+}
+
+select.err {
+	border-color: red;
+}
+
+div.err {
+	background-color: #ffe0e0;	
+	border: solid 1px #ff9090;
+	color: red;
+	border-radius: 4px;
+	margin-bottom: 10px;
+	text-align: left;
+}
+
+div.err li {
+	margin-bottom: 3px;
+}
+
+div.info {
+	
+	background-color: #e0ffe0;	
+	border: solid 1px green;
+	color: green;
+	border-radius: 4px;
+	text-align: left;
+	padding: 10px;
+}
