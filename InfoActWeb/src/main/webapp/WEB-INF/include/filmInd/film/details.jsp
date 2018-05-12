@@ -127,4 +127,6 @@
 			</c:forEach>
 		</table>
 	</c:if>
+	
+	<jsp:include page="/WEB-INF/include/filmInd/recenzie/list.jsp"/>
 </div>

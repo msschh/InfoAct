@@ -38,7 +38,7 @@
 				<input type="hidden" class="a" name="idFilm" value="${record.id}" />
 				<table class="tblForm">
 					<tr>
-						<td>Film</td>
+						<td>Actor</td>
 						<td>
 							<select class="a" name="idActor" style="width: 185px;">
 		           				<option value=""> </option>

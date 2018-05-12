@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="maps">
+	<resultMap type="Recenzie" id="Recenzie" autoMapping="true">
+		<id property="id" column="ID"/>
+		<association property="user" javaType="Utilizator">
+			<id property="id" column="UTI_ID" />
+			<result property="username" column="UTI_USERNAME" />
+		</association>
+        <association property="film" javaType="Film" resultMap="maps.Film" columnPrefix="FLM_" />
+	</resultMap>
+</mapper>

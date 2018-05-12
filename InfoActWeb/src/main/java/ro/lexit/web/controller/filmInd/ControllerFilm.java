@@ -19,10 +19,12 @@ import org.springframework.web.context.request.WebRequest;
 import ro.lexit.app.dao.filmInd.DaoActor;
 import ro.lexit.app.dao.filmInd.DaoFavorit;
 import ro.lexit.app.dao.filmInd.DaoFilm;
+import ro.lexit.app.dao.filmInd.DaoRecenzie;
 import ro.lexit.app.service.filmInd.ServiceFilm;
 import ro.lexit.app.validator.filmInd.ValidatorFilm;
 import ro.lexit.common.dataFilters.filmInd.FActor;
 import ro.lexit.common.dataFilters.filmInd.FFilm;
+import ro.lexit.common.dataFilters.filmInd.FRecenzie;
 import ro.lexit.common.dataRecords.base.Document;
 import ro.lexit.common.dataRecords.filmInd.Film;
 import ro.lexit.common.dataValues.ScreenInfo;
@@ -47,6 +49,7 @@ public class ControllerFilm {
 	@Autowired private DaoFilm dao;
 	@Autowired private DaoActor daoActor;
 	@Autowired private DaoFavorit daoFavorit;
+	@Autowired private DaoRecenzie daoRecenzie;
 
 	@Autowired private UtilDocument utilDocument;
 	@Autowired private SecurityUtils securityUtils;
@@ -159,6 +162,7 @@ public class ControllerFilm {
 		utilDocument.addForView(model, document);
 		model
 			.addAttribute("actori", daoActor.readList(new DataQuery().setFilter(new FActor().setFilm(record))))
+			.addAttribute("recenzii", daoRecenzie.readList(new DataQuery().setFilter(new FRecenzie().setFilm(record))))
 		;
 	}
     

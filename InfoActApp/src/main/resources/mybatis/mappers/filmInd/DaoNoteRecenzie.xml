@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ro.lexit.app.dao.filmInd.DaoNoteRecenzie">
+
+	<sql id="sqlSelect">
+		select
+		    sum(case when REC.NOTA = 1 then 1 else 0 end) as NR_NOTE_1,
+		    sum(case when REC.NOTA = 2 then 1 else 0 end) as NR_NOTE_2,
+		    sum(case when REC.NOTA = 3 then 1 else 0 end) as NR_NOTE_3,
+		    sum(case when REC.NOTA = 4 then 1 else 0 end) as NR_NOTE_4,
+		    sum(case when REC.NOTA = 5 then 1 else 0 end) as NR_NOTE_5,
+		    sum(case when REC.NOTA = 6 then 1 else 0 end) as NR_NOTE_6,
+		    sum(case when REC.NOTA = 7 then 1 else 0 end) as NR_NOTE_7,
+		    sum(case when REC.NOTA = 8 then 1 else 0 end) as NR_NOTE_8,
+		    sum(case when REC.NOTA = 9 then 1 else 0 end) as NR_NOTE_9,
+		    sum(case when REC.NOTA = 10 then 1 else 0 end) as NR_NOTE_10
+	</sql>
+
+	<sql id="sqlFrom">
+		FROM RECENZIE REC
+	</sql>
+	
+	<sql id="sqlWhere">
+		<if test="qry != null and qry.filter != null">
+			where 1 = 1
+			<if test="qry.filter.film != null and qry.filter.film.id != null" >
+				and REC.ID_FILM = #{qry.filter.film.id}
+			</if>
+		</if>
+	</sql>
+
+	<select id="readList" resultMap="maps.NoteRecenzie">
+		<include refid="sqlSelect"></include>
+		<include refid="sqlFrom"></include>
+		<include refid="sqlWhere"></include>
+	</select>
+			
+</mapper>

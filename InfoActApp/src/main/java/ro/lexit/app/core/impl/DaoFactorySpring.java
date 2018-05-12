@@ -6,10 +6,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 
+import ro.lexit.app.core.intf.IDaoFactory;
 import ro.lexit.app.core.intf.IDaoID;
 
 @Service
-public class DaoFactorySpring implements ApplicationContextAware {
+public class DaoFactorySpring implements IDaoFactory, ApplicationContextAware {
 	
 	private ApplicationContext applicationContext;
 	

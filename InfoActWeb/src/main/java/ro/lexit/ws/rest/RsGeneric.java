@@ -38,7 +38,9 @@ public class RsGeneric {
 	private DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 	private ObjectMapper jsonMapper = new ObjectMapper().setDateFormat(dateFormat);
 	private LexicalFactory recordFactory = new LexicalFactory()
-			.addPackage("ro.lexit.common.dataRecords");	
+			.addPackage("ro.lexit.common.dataRecords.admin")
+			.addPackage("ro.lexit.common.dataRecords.base")
+			.addPackage("ro.lexit.common.dataRecords.filmInd");	
 	
 	@Autowired IDaoFactory daoFactory;
 	@Context HttpServletRequest request;

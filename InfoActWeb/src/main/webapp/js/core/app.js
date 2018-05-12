@@ -1,12 +1,8 @@
 app = {
 
-	//urlWs:  'http://localhost:8081/kepres2Ws/api/rs/',
 	urlWs: '/' + window.location.pathname.split('/')[1] + '/api/rs/',
 
-	// pt. read & update & delete
 	getUrl: function(entityCode, recordId) {
-		//let url = 'http://localhost:8081/kepres2Ws/api/rs/' + entityCode + '/' + recordId;
-		//let url = '/' + window.location.pathname.split('/')[1] + '/api/rs/' + entityCode + '/' + recordId;
 		let url = app.urlWs + entityCode + '/' + recordId;
 		return url;
 	},

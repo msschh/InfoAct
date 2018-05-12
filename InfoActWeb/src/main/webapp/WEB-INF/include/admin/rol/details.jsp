@@ -214,6 +214,39 @@
 			        	</ul>
 			        </div>
 			    </li>
+			    <li>
+			        <span>Recenzie</span>
+			        <div class="drepturiHidden">
+						<ul>
+							<c:forEach var="dreptCurent" items="${listDreptCurent}">
+								<c:if test="${dreptCurent.drept.entitate == 'recenzie'}">
+									<li>
+										<c:if test="${ss.view}">
+											<c:if test="${dreptCurent.allowed}">
+								            	<input type="checkbox" value="${dreptCurent.drept.descriere}" checked disabled>
+								            </c:if>
+											<c:if test="${! dreptCurent.allowed}">
+								            	<input type="checkbox" value="${dreptCurent.drept.descriere}" disabled>
+								            </c:if>
+							            </c:if>
+							            <c:if test="${ss.add}">
+							            	<input type="checkbox" name="drepturiAlese" value="${dreptCurent.drept.id}">
+							            </c:if>
+										<c:if test="${ss.edit}">
+											<c:if test="${dreptCurent.allowed}">
+								            	<input type="checkbox" name="drepturiAlese" value="${dreptCurent.drept.id}" checked>
+								            </c:if>
+											<c:if test="${! dreptCurent.allowed}">
+								            	<input type="checkbox" name="drepturiAlese" value="${dreptCurent.drept.id}">
+								            </c:if>
+							            </c:if>
+						            	<label>${dreptCurent.drept.descriere} (${dreptCurent.drept.cod})</label>
+						          	</li>
+								</c:if>
+	                  	 	</c:forEach>
+			        	</ul>
+			        </div>
+			    </li>
 			</ul>
 		</div>
 	</div>

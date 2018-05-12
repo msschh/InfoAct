@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ro.lexit.app.dao.filmInd.DaoRecenzie">
+
+	<!-- ================================== -->
+	<!-- ==  SQL 						 == -->
+	<!-- ================================== -->	
+	
+	<sql id="sqlSelect">
+		select 
+			REC.*,
+			FLM.ID AS FLM_ID,
+			UTI.ID as UTI_ID,
+			UTI.USERNAME AS UTI_USERNAME
+	</sql>
+	
+	<sql id="sqlFrom">
+		from 
+			RECENZIE REC
+			left join FILM FLM on FLM.ID = REC.ID_FILM
+			left join UTILIZATOR UTI on UTI.ID = REC.ID_USER
+	</sql>
+	
+	<sql id="sqlWhere">
+		<if test="qry != null and qry.filter != null">
+			where 1 = 1
+			<if test="qry.filter.film != null and qry.filter.film.id != null" >
+				and REC.ID_FILM = #{qry.filter.film.id}
+			</if>
+		</if>
+	</sql>
+	
+	<sql id="sqlOrderBy">
+		<if test="qry == null or qry.sorter == null">
+			order by REC.DT desc
+		</if>
+	</sql>
+	
+	<!-- ================================= -->
+	<!-- ==  READ  					 	== -->
+	<!-- ================================= -->		
+		
+	<select id="readRecordCount" resultType="int">
+		select count(REC.ID)
+		<include refid="sqlFrom"></include>
+		<include refid="sqlWhere"></include>
+	</select>
+		
+	<select id="readList" resultMap="maps.Recenzie">
+		<include refid="sqlSelect"></include>
+		<include refid="sqlFrom"></include>
+		<include refid="sqlWhere"></include>
+		<include refid="sqlOrderBy"></include>
+	</select>
+	
+	<!-- ================================== -->
+	<!-- ==  CREATE / UPDATE / DELETE	 == -->
+	<!-- ================================== -->	
+	
+	<delete id="delete">
+		delete from RECENZIE where id = #{id}
+	</delete>
+   
+   	<insert id="create" useGeneratedKeys="true" >
+		<selectKey keyProperty="record.id" resultType="int" order="BEFORE">
+			select SEQ_RECENZIE.NEXTVAL from DUAL
+		</selectKey>
+		insert into RECENZIE(
+			  ID
+			, DT
+			, NOTA
+			, TEXT
+			, ID_FILM
+			, ID_USER
+		) values(
+			  #{record.id}
+			, SYSDATE
+			, #{record.nota}
+			, #{record.text}
+			, #{record.film.id}
+			, #{record.user.id}
+		)
+   </insert>
+	
+</mapper>
