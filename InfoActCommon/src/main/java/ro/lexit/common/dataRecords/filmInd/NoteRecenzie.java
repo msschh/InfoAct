@@ -1,8 +1,8 @@
 package ro.lexit.common.dataRecords.filmInd;
 
-import ro.lexit.common.utils.IDataRecord;
+import ro.lexit.common.utils.DataRecordID;
 
-public class NoteRecenzie implements IDataRecord {
+public class NoteRecenzie extends DataRecordID {
 
 	private Integer nrNote1;
 	private Integer nrNote2;

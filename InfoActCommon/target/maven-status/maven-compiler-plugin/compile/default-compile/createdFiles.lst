@@ -5,10 +5,13 @@ ro\lexit\common\encryption\CharacterEncoderBASE64.class
 ro\lexit\common\dataRecords\admin\Utilizator.class
 ro\lexit\common\dataValues\RolCurent.class
 ro\lexit\common\encryption\CharacterEncoder.class
+ro\lexit\common\dataFilters\filmInd\FRecenzie.class
 ro\lexit\common\dataValues\ScreenStatus.class
+ro\lexit\common\dataRecords\filmInd\NoteRecenzie.class
 ro\lexit\common\dataFilters\admin\FRol.class
 ro\lexit\common\utils\DataQuery.class
 ro\lexit\common\utils\IDataObject.class
+ro\lexit\common\dataFilters\filmInd\FNoteRecenzie.class
 ro\lexit\common\dataRecords\admin\PassChg.class
 ro\lexit\common\dataRecords\admin\Rol.class
 ro\lexit\common\utils\DataRecordID.class
@@ -18,6 +21,7 @@ ro\lexit\common\utils\IDataRecord.class
 ro\lexit\common\dataRecords\admin\Sesiune.class
 ro\lexit\common\dataRecords\filmInd\Film.class
 ro\lexit\common\dataFilters\admin\FUtilizator.class
+ro\lexit\common\dataRecords\filmInd\Recenzie.class
 ro\lexit\common\dataRecords\admin\Drept.class
 ro\lexit\common\dataRecords\base\Document.class
 ro\lexit\common\dataValues\DreptCurent.class

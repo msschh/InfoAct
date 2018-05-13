@@ -36,6 +36,7 @@
 		<script src="${pageContext.request.contextPath}/js/core/grid.js"></script>	
 		<script src="${pageContext.request.contextPath}/js/core/tabs.js"></script>
 		<script src="${pageContext.request.contextPath}/js/core/menu.js"></script>
+		<script src="${pageContext.request.contextPath}/js/core/chart.min.js"></script>
 		
 		<decorator:head/>
 	</head>

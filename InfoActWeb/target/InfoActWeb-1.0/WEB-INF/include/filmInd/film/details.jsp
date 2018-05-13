@@ -127,4 +127,10 @@
 			</c:forEach>
 		</table>
 	</c:if>
+	
+	<div>
+		<canvas id="chartNote" height="120" width="300"></canvas>
+	</div>
+
+	<jsp:include page="/WEB-INF/include/filmInd/recenzie/list.jsp"/>
 </div>

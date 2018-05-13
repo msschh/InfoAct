@@ -9,6 +9,7 @@ C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\data
 C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\utils\DataRecordCOD.java
 C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\dataRecords\admin\Rol.java
 C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\dataFilters\base\FAtasament.java
+C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\dataRecords\filmInd\NoteRecenzie.java
 C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\dataValues\ScreenInfo.java
 C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\utils\IDataFilter.java
 C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\dataFilters\admin\FUtilizator.java
@@ -19,10 +20,13 @@ C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\util
 C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\encryption\CharacterEncoderBASE64.java
 C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\dataRecords\admin\Drept.java
 C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\dataFilters\admin\FRol.java
+C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\dataFilters\filmInd\FNoteRecenzie.java
+C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\dataFilters\filmInd\FRecenzie.java
 C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\dataRecords\admin\Utilizator.java
 C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\utils\DataQuery.java
 C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\dataFilters\filmInd\FActor.java
 C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\utils\IDataValue.java
+C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\dataRecords\filmInd\Recenzie.java
 C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\dataFilters\filmInd\FFilm.java
 C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\dataRecords\filmInd\Film.java
 C:\Users\Enache\Desktop\InfoAct\InfoActCommon\src\main\java\ro\lexit\common\dataRecords\base\Document.java

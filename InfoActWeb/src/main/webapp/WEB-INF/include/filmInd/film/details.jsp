@@ -128,5 +128,11 @@
 		</table>
 	</c:if>
 	
+	<c:if test="${not empty recenzii}">
+		<div>
+			<canvas id="chartNote" height="120" width="300"></canvas>
+		</div>
+	</c:if>
+
 	<jsp:include page="/WEB-INF/include/filmInd/recenzie/list.jsp"/>
 </div>

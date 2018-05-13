@@ -16,9 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import ro.lexit.app.dao.filmInd.DaoActor;
 import ro.lexit.app.dao.filmInd.DaoFavorit;
 import ro.lexit.app.dao.filmInd.DaoFilm;
+import ro.lexit.app.dao.filmInd.DaoNoteRecenzie;
 import ro.lexit.app.dao.filmInd.DaoRecenzie;
 import ro.lexit.app.service.filmInd.ServiceFilm;
 import ro.lexit.app.validator.filmInd.ValidatorFilm;
@@ -50,6 +53,7 @@ public class ControllerFilm {
 	@Autowired private DaoActor daoActor;
 	@Autowired private DaoFavorit daoFavorit;
 	@Autowired private DaoRecenzie daoRecenzie;
+	@Autowired private DaoNoteRecenzie daoNoteRecenzie;
 
 	@Autowired private UtilDocument utilDocument;
 	@Autowired private SecurityUtils securityUtils;
@@ -164,6 +168,15 @@ public class ControllerFilm {
 			.addAttribute("actori", daoActor.readList(new DataQuery().setFilter(new FActor().setFilm(record))))
 			.addAttribute("recenzii", daoRecenzie.readList(new DataQuery().setFilter(new FRecenzie().setFilm(record))))
 		;
+
+		ObjectMapper mapper = new ObjectMapper();
+		String json = "";
+		try {
+			json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(daoNoteRecenzie.readList(new DataQuery().setFilter(new FRecenzie().setFilm(record))));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("noteRecenzie", json);
 	}
     
 	private void addForEdit(Model model, Film record) {

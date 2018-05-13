@@ -17,7 +17,9 @@ ro\lexit\app\service\filmInd\ServiceFilm.class
 ro\lexit\app\core\intf\IDaoID.class
 ro\lexit\app\validator\admin\ValidatorRol.class
 ro\lexit\app\dao\filmInd\DaoActorFilm.class
+ro\lexit\app\dao\filmInd\DaoNoteRecenzie.class
 ro\lexit\app\dao\filmInd\DaoFilm.class
 ro\lexit\app\validator\filmInd\ValidatorActor.class
 ro\lexit\app\dao\base\DaoAtasament.class
+ro\lexit\app\dao\filmInd\DaoRecenzie.class
 ro\lexit\app\service\base\ServiceAtasament.class

@@ -8,7 +8,11 @@
 	<meta name="decorator" content="decorator-main">
 	<c:if test="${ss.view}">
 		<script src="${pageContext.request.contextPath}/js/screens/filmInd/film/favorit.js"></script>
+		<script src="${pageContext.request.contextPath}/js/screens/filmInd/film/chartNote.js"></script>
 		<script src="${pageContext.request.contextPath}/js/screens/filmInd/recenzie/modalRecenzie.js"></script>
+		<script>
+			var noteRecenzie = ${noteRecenzie};
+		</script>
 	</c:if>
 	<c:if test="${ss.edit}">
 		<script src="${pageContext.request.contextPath}/js/screens/base/atasament/modalAtasament.js"></script>

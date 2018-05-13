@@ -29,7 +29,7 @@
 	
   	<jaxrs:server id="rsAll" address="/rs">
   		<jaxrs:serviceBeans>
-			<!-- <bean class="ro.lexit.ws.rest.RsGeneric"/>  -->
+			<bean class="ro.lexit.ws.rest.RsGeneric"/>
 			<bean class="ro.lexit.ws.rest.RsActorFilm"/>
 			<bean class="ro.lexit.ws.rest.RsFavorit"/>
   		</jaxrs:serviceBeans>
