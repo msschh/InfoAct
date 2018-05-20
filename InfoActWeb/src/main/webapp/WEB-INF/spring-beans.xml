@@ -18,6 +18,7 @@
 	
 	<bean id="appSettings" class="ro.lexit.common.dataValues.AppSettings">
 		<property name="basedir" value="${appSettings.basedir}"/>
+		<property name="testdir" value="${appSettings.testdir}"/>
 	</bean>
 	
 </beans>

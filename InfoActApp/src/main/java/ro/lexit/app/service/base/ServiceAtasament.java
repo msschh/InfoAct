@@ -26,4 +26,16 @@ public class ServiceAtasament {
 		return filepath;
 	}
 
+	public String getFilepathTest(Atasament atasament) {
+	    
+		File directory = null;
+		String testdir = appSettings.getTestdir();
+		directory = new File(testdir);
+		if (! directory.exists()) { directory.mkdir(); }
+		
+		String filepath = testdir + "//" + atasament.getUrl();
+		
+		return filepath;
+	}
+
 }
