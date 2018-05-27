@@ -4,109 +4,28 @@ $(function() {
 	Chart.defaults.global.defaultFontFamily = "sans-serif";
 	Chart.defaults.global.defaultFontSize = 18;
 	
-	var dataSts3 = [];
-	var dataSts4 = [];
-	var dataSts8 = [];
-	var dataSts9 = [];
-	var dataSts15 = [];
-	var labels = [];
-	var sts = [];
+	var note = [];
+	note.push(noteRecenzie[0].nrNote1);
+	note.push(noteRecenzie[0].nrNote2);
+	note.push(noteRecenzie[0].nrNote3);
+	note.push(noteRecenzie[0].nrNote4);
+	note.push(noteRecenzie[0].nrNote5);
+	note.push(noteRecenzie[0].nrNote6);
+	note.push(noteRecenzie[0].nrNote7);
+	note.push(noteRecenzie[0].nrNote8);
+	note.push(noteRecenzie[0].nrNote9);
+	note.push(noteRecenzie[0].nrNote10);
 	
-	alert(noteRecenzie);
-	
-	$.each(recordList, function(key, value){
-		var str = value.an;
-		if (value.saptamana != null) {
-			str = "w" + value.saptamana;
-		}
-		if (value.luna != null) {
-			str = value.luna;
-		}
-		if (value.trimestru != null) {
-			str = "Q" + value.trimestru;
-		}
-		labels.push(str);
-		
-		if (value.sts3 != null) {
-			dataSts3.push(value.sts3);
-		}
-		if (value.sts4 != null) {
-			dataSts4.push(value.sts4);
-		}
-		if (value.sts8 != null) {
-			dataSts8.push(value.sts8);
-		}
-		if (value.sts9 != null) {
-			dataSts9.push(value.sts9);
-		}
-		if (value.sts15 != null) {
-			dataSts15.push(value.sts15);
-		}
-	});
-
-	if (dataSts3.length > 0) {
-		var sts3 = {
-			label: 'Interviuri planificate',
-			data: dataSts3,
-			borderColor: '#A5D6A7',
-			borderWidth: 3,
-			fill: false,
-			backgroundColor: '#A5D6A7'
-		};
-		sts.push(sts3);
-	}
-
-	if (dataSts4.length > 0) {
-		var sts4 = {
-			label: 'Interviuri interne',
-			data: dataSts4,
+	var dataset = {
+		labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+		datasets: [{
+			label: 'Note',
+			data: note,
 			borderColor: '#81D4FA',
 			borderWidth: 3,
 			fill: false,
 			backgroundColor: '#81D4FA'
-		};
-		sts.push(sts4);
-	}
-
-	if (dataSts8.length > 0) {
-		var sts8 = {
-			label: 'Candidati validati',
-			data: dataSts8,
-			borderColor: '#CE93D8',
-			borderWidth: 3,
-			fill: false,
-			backgroundColor: '#CE93D8'
-		};
-		sts.push(sts8);
-	}
-
-	if (dataSts9.length > 0) {
-		var sts9 = {
-			label: 'Interviuri client',
-			data: dataSts9,
-			borderColor: '#FFE082',
-			borderWidth: 3,
-			fill: false,
-			backgroundColor: '#FFE082'
-		};
-		sts.push(sts9);
-	}
-
-	if (dataSts15.length > 0) {
-		var sts15 = {
-			label: 'Angajari',
-			data: dataSts15,
-			borderColor: '#EF9A9A',
-			borderWidth: 3,
-			fill: false,
-			backgroundColor: '#EF9A9A'
-		};
-		sts.push(sts15);
-	}
-
-	var dataset = {
-		labels: labels,
-		datasets: sts
+		}]
 	};
 
 	var chartOptions = {
@@ -123,22 +42,10 @@ $(function() {
 		}
 	};
 	
-	var chartType = $('#chartType').val();
-	
 	var myChart = new Chart(chart, {
-		type: chartType,
+	    type: 'bar',
 		data: dataset,
 		options: chartOptions
-	});
-	
-	$('#chartType').change(function(){
-		chartType = $('#chartType').val();
-		myChart.destroy();
-		myChart = new Chart(chart, {
-			type: chartType,
-			data: dataset,
-			options: chartOptions
-		});
 	});
 });
 
