@@ -22,7 +22,7 @@ def predict(X_img_path, model_path=None):
     faces_encodings = face_recognition.face_encodings(X_img, known_face_locations=X_face_locations);
 
     if len(X_face_locations) != 1:
-        return []
+        return "unknown"
 
     return svm_clf.predict(faces_encodings)[0]
 
