@@ -8,7 +8,7 @@ import face_recognition
 from face_recognition.face_recognition_cli import image_files_in_folder
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
-
+model_path="trained_svm_model.clf"
 
 def predict(X_img_path, model_path=None):
     if not os.path.isfile(X_img_path) or os.path.splitext(X_img_path)[1][1:] not in ALLOWED_EXTENSIONS:
@@ -26,9 +26,11 @@ def predict(X_img_path, model_path=None):
 
     return svm_clf.predict(faces_encodings)[0]
 
+def recognize_svm(img):
+    name = predict(img, model_path=model_path)
+    return name
 
 if __name__ == "__main__":
-    model_path="trained_svm_model.clf"
     img = "brit.jpg"
 
     name = predict(img, model_path=model_path)
