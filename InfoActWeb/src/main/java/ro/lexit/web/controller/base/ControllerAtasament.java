@@ -33,7 +33,7 @@ public class ControllerAtasament {
 	private ScreenInfo screen = new ScreenInfo()
 		.setModule("base")
 		.setScreenCode("atasament")
-		.setScreenTitle("Atașamente")
+		.setScreenTitle("Căutare actor")
 		.setViewname("base/atasament")
 		.setMenuTitle("app")
 		.setMenuHead("general")

@@ -2,9 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:if test="${ss.view}">
-</c:if>
-	
-<c:if test="${ss.edit}">
 	<jsp:include page="/WEB-INF/modal/base/atasament/modalAtasament.jsp"/>
 	<jsp:include page="/WEB-INF/modal/filmInd/modalActorFilm.jsp" />
 

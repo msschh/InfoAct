@@ -149,6 +149,7 @@ public class ControllerActor {
 		utilDocument.addForView(model, document);
 		model
 			.addAttribute("filme", daoFilm.readList(new DataQuery(new FFilm().setActor(record))))
+			.addAttribute("listFilme", daoFilm.readList())
 		;
 	}
     
@@ -157,7 +158,6 @@ public class ControllerActor {
 		utilDocument.addForView(model, document);
 		model
 			.addAttribute("filme", daoFilm.readList(new DataQuery(new FFilm().setActor(record))))
-			.addAttribute("listFilme", daoFilm.readList())
 		;
 	}	
 

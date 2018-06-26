@@ -2,12 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<div id="divFilter" style="height: 35px; width: 610px;">
-	<div style="float: left; width: 200px;">
+<div id="divFilter" style="height: 35px; width: 830px;">
+	<div style="float: left; width: 830px;">
 		<table>
 			<tr>
 				<td>Titlu</td>
-				<td><input type="text" name="nume" value="${filter.nume}" style="width: 160px;"></td>
+				<td><input type="text" name="nume" value="${filter.nume}" style="width: 760px;"></td>
 			</tr>
 		</table>
 	</div>

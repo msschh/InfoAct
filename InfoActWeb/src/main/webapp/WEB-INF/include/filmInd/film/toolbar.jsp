@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:if test="${ss.edit}">
+<c:if test="${ss.view}">
 	<jsp:include page="/WEB-INF/modal/base/atasament/modalAtasament.jsp"/>
 	<jsp:include page="/WEB-INF/modal/filmInd/modalActorFilm.jsp" />
 		

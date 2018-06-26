@@ -150,7 +150,7 @@ public class ScreenAdapter {
 		String pageNoString = webRequest.getParameter("pageNo");
 		String pageSizeString = webRequest.getParameter("pageSize");
 		Integer pageNo = (pageNoString == null ? 1 : Integer.parseInt(pageNoString));
-		Integer pageSize = (pageSizeString == null ? 10 : Integer.parseInt(pageSizeString));
+		Integer pageSize = (pageSizeString == null ? 15 : Integer.parseInt(pageSizeString));
 		Pager pager = new Pager().setRecordCount(recordCount).setPageSize(pageSize).setPageNo(pageNo).build();
 		return pager;
 	}

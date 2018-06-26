@@ -7,7 +7,7 @@ import java.io.UnsupportedEncodingException;
 public class EncryptionUtils {
 
 	public static String encrypt(String input) {
-		return encrypt(input, EncryptionAlgorithm.SHA1);
+		return encrypt(input, EncryptionAlgorithm.SHA256);
 	}
 	
 	public static String encrypt(String input, String algorithm) {

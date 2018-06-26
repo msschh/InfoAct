@@ -23,7 +23,7 @@ public class ServiceRecunoastereFaciala {
 
 	public Actor recunoasteActor(String img) {
 		try {
-			String url = "http://127.0.0.1:8081/recognizeKNN/" + img;
+			String url = "http://127.0.0.1:8081/recognizeSVM/" + img;
 			URL obj = new URL(url);
 			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 			con.setRequestMethod("GET");

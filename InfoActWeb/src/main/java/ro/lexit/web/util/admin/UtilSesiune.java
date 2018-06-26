@@ -26,7 +26,7 @@ public class UtilSesiune {
 		sesiune.setIp(servletUtils.getIp(request));
 		sesiune.setDtAccesare(new Date());
 		sesiune.setUtilizator(utilizator);
-		//daoSesiune.create(sesiune);		
+		//daoSesiune.create(sesiune);
 		session.setAttribute("idSesiune", sesiune.getId());
 		return sesiune;
 	}

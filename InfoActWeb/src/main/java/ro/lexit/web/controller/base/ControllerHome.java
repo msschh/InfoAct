@@ -35,7 +35,7 @@ public class ControllerHome {
             	.addAttribute("myName", myName);
         }
 
-        return viewname;
+        return "redirect:atasament/add";
     }
 
     @RequestMapping("/error/404")
