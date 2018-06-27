@@ -5,15 +5,17 @@
 
 <jsp:include page="/WEB-INF/common/err.jsp"/>
 
-<div>
+<div style="margin-top: 20px;">
 
-	<c:if test="${not empty record.poza}">
-		<img src="${pageContext.request.contextPath}/img/atasamente/${record.document.id}/${record.poza.url}"
-			height="320" width="215">
-	</c:if>
-	<c:if test="${empty record.poza}">
-		<img src="${pageContext.request.contextPath}/img/atasamente/default.jpg"
-			height="320" width="215">
+	<c:if test="${ss.view}">
+		<c:if test="${not empty record.poza}">
+			<img src="${pageContext.request.contextPath}/img/atasamente/${record.document.id}/${record.poza.url}"
+				height="320" width="215">
+		</c:if>
+		<c:if test="${empty record.poza}">
+			<img src="${pageContext.request.contextPath}/img/atasamente/default.jpg"
+				height="320" width="215">
+		</c:if>
 	</c:if>
 	
 	<table class="tblForm">
@@ -24,30 +26,30 @@
 					<input type="text" value="${record.nume}" disabled>
 				</c:if>
 				<c:if test="${ss.editable}">
-					<form:input path="nume" cssErrorClass="err"/>
+					<form:input path="nume" cssErrorClass="err" style="width: 300px;"/>
 				</c:if>
 			</td>
 		</tr>
 		<tr>
-			<td>Dt. ang.</td>
+			<td>Dt. nastere</td>
 			<td>
 				<c:if test="${ss.view}">
 					<fmt:formatDate var="dtNastere" pattern="dd.MM.yyyy" value="${record.dtNastere}" />
 					<input type="text" value="${dtNastere}" disabled />
 				</c:if>
 				<c:if test="${ss.editable}">
-					<form:input path="dtNastere" class="datepicker" type="text" value="${dtNastere}" cssErrorClass="err"/>
+					<form:input path="dtNastere" class="datepicker" type="text" value="${dtNastere}" cssErrorClass="err" style="width: 300px;"/>
 				</c:if>
 			</td>
 		</tr>
 		<tr>
-			<td>Loc Nastere</td>
+			<td>Loc nastere</td>
 			<td>
 				<c:if test="${ss.view}">
 					<input type="text" value="${record.locNastere}" disabled>
 				</c:if>
 				<c:if test="${ss.editable}">
-					<form:input path="locNastere" cssErrorClass="err"/>
+					<form:input path="locNastere" cssErrorClass="err" style="width: 300px;"/>
 				</c:if>
 			</td>
 		</tr>
@@ -58,12 +60,13 @@
 					<textarea disabled style="width: 400px; height: 110px;">${record.descriere}</textarea>
 				</c:if>
 				<c:if test="${ss.editable}">
-					<form:textarea path="descriere" style="width: 400px; height: 110px;"/>
+					<form:textarea path="descriere" style="width: 400px; height: 200px;"/>
 				</c:if>
 			</td>
 		</tr> 
 	</table>
 	
+	<c:if test="${ss.view}">
 	<br><br><br>
 	
 	<c:if test="${not empty atasamente}">
@@ -114,5 +117,6 @@
 				</tr>
 			</c:forEach>
 		</table>
+	</c:if>
 	</c:if>
 </div>

@@ -5,18 +5,17 @@
 
 <jsp:include page="/WEB-INF/common/err.jsp"/>
 
-<div>
+<div style="margin-top: 20px;">
 
-	<c:if test="${not empty record.poza}">
-		<img src="${pageContext.request.contextPath}/img/atasamente/${record.document.id}/${record.poza.url}"
-			height="320" width="215">
-	</c:if>
-	<c:if test="${empty record.poza}">
-		<img src="${pageContext.request.contextPath}/img/atasamente/default.jpg"
-			height="320" width="215">
-	</c:if>
-	
 	<c:if test="${ss.view}">
+		<c:if test="${not empty record.poza}">
+			<img src="${pageContext.request.contextPath}/img/atasamente/${record.document.id}/${record.poza.url}"
+				height="320" width="215">
+		</c:if>
+		<c:if test="${empty record.poza}">
+			<img src="${pageContext.request.contextPath}/img/atasamente/default.jpg"
+				height="320" width="215">
+		</c:if>
 		<c:if test="${record.favorit}">
 			<img src="${pageContext.request.contextPath}/img/actions/starFull32.png"
 				onclick="filmFavorit(${record.id}, true)" style="cursor: pointer;">
@@ -35,7 +34,7 @@
 					<input type="text" value="${record.nume}" disabled>
 				</c:if>
 				<c:if test="${ss.editable}">
-					<form:input path="nume" cssErrorClass="err"/>
+					<form:input path="nume" cssErrorClass="err" style="width: 300px;"/>
 				</c:if>
 			</td>
 		</tr>
@@ -46,7 +45,7 @@
 					<input type="text" value="${record.genuri}" disabled>
 				</c:if>
 				<c:if test="${ss.editable}">
-					<form:input path="genuri" />
+					<form:input path="genuri"  style="width: 300px;"/>
 				</c:if>
 			</td>
 		</tr>
@@ -58,7 +57,7 @@
 					<input type="text" value="${dt}" disabled />
 				</c:if>
 				<c:if test="${ss.editable}">
-					<form:input path="dt" class="datepicker" type="text" value="${dt}" cssErrorClass="err"/>
+					<form:input path="dt" class="datepicker" type="text" value="${dt}" cssErrorClass="err" style="width: 300px;"/>
 				</c:if>
 			</td>
 		</tr>
@@ -69,20 +68,21 @@
 					<textarea disabled style="width: 400px; height: 110px;">${record.descriere}</textarea>
 				</c:if>
 				<c:if test="${ss.editable}">
-					<form:textarea path="descriere" style="width: 400px; height: 110px;"/>
+					<form:textarea path="descriere" style="width: 400px; height: 200px;"/>
 				</c:if>
 			</td>
 		</tr> 
 	</table>
 	
 	
+	<c:if test="${ss.view}">
 	<br><br><br>
 	
 	<c:if test="${not empty atasamente}">
 		<div style="overflow-x: auto; height: 340px; white-space: nowrap; ">
 			<c:forEach var="imagine" items="${atasamente}">
 				<img src="${pageContext.request.contextPath}/img/atasamente/${record.document.id}/${imagine.url}"
-					height="320" width="215" style="display: inline-block;">
+					height="320" width="210" style="display: inline-block;">
 			</c:forEach>
 		</div>
 		
@@ -135,4 +135,5 @@
 	</c:if>
 
 	<jsp:include page="/WEB-INF/include/filmInd/recenzie/list.jsp"/>
+	</c:if>
 </div>

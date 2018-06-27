@@ -16,7 +16,7 @@ public class Pager {
 
 	public Pager() {
 		visiblePages = new ArrayList<Integer>();
-		pageSize = 10;
+		pageSize = 12;
 		chapterSize = 5;
 		pageNo = 1;
 	}

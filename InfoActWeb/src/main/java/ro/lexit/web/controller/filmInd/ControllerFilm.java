@@ -185,6 +185,7 @@ public class ControllerFilm {
 		utilDocument.addForView(model, document);
 		model
 			.addAttribute("actori", daoActor.readList(new DataQuery().setFilter(new FActor().setFilm(record))))
+			.addAttribute("recenzii", daoRecenzie.readList(new DataQuery().setFilter(new FRecenzie().setFilm(record))))
 		;
 	}	
 

@@ -8,96 +8,80 @@
 <div style="margin-top: 20px;">
 
 	<c:if test="${ss.view}">
+		<h1 style="text-align: center; color: #306daa;">
+			${record.nume}
+			<c:if test="${record.favorit}">
+				<img src="${pageContext.request.contextPath}/img/actions/starFull32.png"
+					onclick="filmFavorit(${record.id}, true)" style="cursor: pointer;">
+			</c:if>
+			<c:if test="${not record.favorit}">
+				<img src="${pageContext.request.contextPath}/img/actions/starEmpty32.png"
+					onclick="filmFavorit(${record.id}, false)" style="cursor: pointer;">
+			</c:if>
+		</h1>
+		<div style="margin-left: 30px; float:left;">
 		<c:if test="${not empty record.poza}">
 			<img src="${pageContext.request.contextPath}/img/atasamente/${record.document.id}/${record.poza.url}"
-				height="320" width="215">
+				height="210" width="150">
 		</c:if>
 		<c:if test="${empty record.poza}">
 			<img src="${pageContext.request.contextPath}/img/atasamente/default.jpg"
-				height="320" width="215">
+				height="210" width="150">
 		</c:if>
-		<c:if test="${record.favorit}">
-			<img src="${pageContext.request.contextPath}/img/actions/starFull32.png"
-				onclick="filmFavorit(${record.id}, true)" style="cursor: pointer;">
-		</c:if>
-		<c:if test="${not record.favorit}">
-			<img src="${pageContext.request.contextPath}/img/actions/starEmpty32.png"
-				onclick="filmFavorit(${record.id}, false)" style="cursor: pointer;">
-		</c:if>
+		</div>
+		<fmt:formatDate var="dt" pattern="dd.MM.yyyy" value="${record.dt}" />
+		<div style="margin-left: 205px; color: #808080;">
+			${record.genuri} | ${dt}
+		</div>
+		<br><br>
+		<div style="margin-left: 205px; color: #808080;">
+			${record.descriere}
+		</div>
+		<div style="clear: both;"></div>
 	</c:if>
 	
+	<c:if test="${ss.editable}">
 	<table class="tblForm">
 		<tr>
 			<td>Titlu</td>
 			<td>
-				<c:if test="${ss.view}">
-					<input type="text" value="${record.nume}" disabled>
-				</c:if>
-				<c:if test="${ss.editable}">
-					<form:input path="nume" cssErrorClass="err" style="width: 300px;"/>
-				</c:if>
+				<form:input path="nume" cssErrorClass="err" style="width: 300px;"/>
 			</td>
 		</tr>
 		<tr>
 			<td>Genuri</td>
 			<td>
-				<c:if test="${ss.view}">
-					<input type="text" value="${record.genuri}" disabled>
-				</c:if>
-				<c:if test="${ss.editable}">
-					<form:input path="genuri"  style="width: 300px;"/>
-				</c:if>
+				<form:input path="genuri"  style="width: 300px;"/>
 			</td>
 		</tr>
 		<tr>
 			<td>Dt. aparitie</td>
 			<td>
-				<c:if test="${ss.view}">
-					<fmt:formatDate var="dt" pattern="dd.MM.yyyy" value="${record.dt}" />
-					<input type="text" value="${dt}" disabled />
-				</c:if>
-				<c:if test="${ss.editable}">
-					<form:input path="dt" class="datepicker" type="text" value="${dt}" cssErrorClass="err" style="width: 300px;"/>
-				</c:if>
+				<form:input path="dt" class="datepicker" type="text" value="${dt}" cssErrorClass="err" style="width: 300px;"/>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
 				<p style="margin-bottom: 7px; margin-top: 15px; margin-left: 1px;">Descriere</p>
-				<c:if test="${ss.view}">
-					<textarea disabled style="width: 400px; height: 110px;">${record.descriere}</textarea>
-				</c:if>
-				<c:if test="${ss.editable}">
-					<form:textarea path="descriere" style="width: 400px; height: 200px;"/>
-				</c:if>
+				<form:textarea path="descriere" style="width: 400px; height: 200px;"/>
 			</td>
 		</tr> 
 	</table>
-	
-	
-	<c:if test="${ss.view}">
-	<br><br><br>
-	
-	<c:if test="${not empty atasamente}">
-		<div style="overflow-x: auto; height: 340px; white-space: nowrap; ">
-			<c:forEach var="imagine" items="${atasamente}">
-				<img src="${pageContext.request.contextPath}/img/atasamente/${record.document.id}/${imagine.url}"
-					height="320" width="215" style="display: inline-block;">
-			</c:forEach>
-		</div>
-		
-		<br><br><br>
 	</c:if>
 	
+	<br>
+	
 	<c:if test="${empty actori}">
+		<br>
 		<div class="info">Acest film nu contine nici un actor.</div>
 	</c:if>
 	
 	<c:if test="${not empty actori}">
+		<h1 style="text-align: center; color: #306daa;">Actors</h1>
 		<table class="tblGrid">
 			<tr>
 				<th></th>
-				<th align="left">Nume</th>
+				<th align="left">Actori</th>
 				<th align="left">Personaj</th>
 				<th></th>
 			</tr>
@@ -127,13 +111,31 @@
 			</c:forEach>
 		</table>
 	</c:if>
+	<c:if test="${ss.view}">
 	
+	<c:if test="${not empty atasamente}">
+		<br>
+		<h1 style="text-align: center; color: #306daa;">Images</h1>
+		<br>
+		<div style="overflow-x: auto; height: 340px; white-space: nowrap; ">
+			<c:forEach var="imagine" items="${atasamente}">
+				<img src="${pageContext.request.contextPath}/img/atasamente/${record.document.id}/${imagine.url}"
+					height="320" width="210" style="display: inline-block;">
+			</c:forEach>
+		</div>
+	</c:if>
+	
+	<br>
+	<h1 style="text-align: center; color: #306daa;">Reviews</h1>
+
 	<c:if test="${not empty recenzii}">
 		<div>
 			<canvas id="chartNote" height="120" width="300"></canvas>
 		</div>
 	</c:if>
+	</c:if>
+	<br>
 
 	<jsp:include page="/WEB-INF/include/filmInd/recenzie/list.jsp"/>
-	</c:if>
+	
 </div>

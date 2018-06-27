@@ -3,30 +3,30 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div id="divFilter" style="height: 35px;">
-	<div style="float: left; width: 200px;">
+	<div style="float: left; width: 180px;">
 		<table>
 			<tr>
 				<td>Nume</td>
-				<td><input type="text" name="nume" value="${filter.nume}" style="width: 130px;"></td>
+				<td><input type="text" name="nume" value="${filter.nume}" style="width: 120px;"></td>
 			</tr>
 		</table>
 	</div>
 	
-	<div style="float: left; width: 230px;">
+	<div style="float: left; width: 210px;">
 		<table>
 			<tr>
 				<td>Username</td>
-				<td><input type="text" name="username" value="${filter.username}" style="width: 130px;"></td>	
+				<td><input type="text" name="username" value="${filter.username}" style="width: 120px;"></td>	
 			</tr>
 		</table>
 	</div>
 	
-	<div style="float: left; width: 180px;">
+	<div style="float: left; width: 170px;">
 		<table>
 			<tr>
 				<td>Rol</td>
 				<td>
-					<select name="rol.id" style="width: 130px;">
+					<select name="rol.id" style="width: 120px;">
 						<option value="" label=" " />
 						<c:forEach var="rol" items="${listRol}">
 							<option value="${rol.id}">${rol.nume}</option>

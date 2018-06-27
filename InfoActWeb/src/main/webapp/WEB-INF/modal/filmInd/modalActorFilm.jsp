@@ -40,7 +40,7 @@
 					<tr>
 						<td>Actor</td>
 						<td>
-							<select class="a" name="idActor" style="width: 185px;">
+							<select class="a" name="idActor" style="width: 235px;">
 		           				<option value=""> </option>
 		           				<c:forEach var="actor" items="${listActori}">
 		           					<option value="${actor.id}">${actor.nume}</option>
@@ -51,7 +51,7 @@
 					<tr>
 						<td>Personaj</td>
 						<td>
-							<input type="text" class="a" name="personaj" style="width: 185px;" />		
+							<input type="text" class="a" name="personaj" style="width: 235px;" />		
 						</td>
 					</tr>
 				</table>

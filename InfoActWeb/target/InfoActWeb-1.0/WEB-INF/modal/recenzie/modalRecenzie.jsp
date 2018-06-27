@@ -4,7 +4,7 @@
 
 <div id="modalRecenzie" class="modal">
 
-    <div class="content" style="width: 350px;">
+    <div class="content" style="width: 450px;">
     
         <div class="header">
             <p align="center">Recenzie</p>
@@ -28,7 +28,7 @@
 					<td></td>
 				</tr>
 			</table>
-			<textarea class="a" name="text" style="width: 310px; height: 150px; margin-top:5px;"></textarea>
+			<textarea class="a" name="text" style="width: 410px; height: 150px; margin-top:5px;"></textarea>
             
         </div>
         

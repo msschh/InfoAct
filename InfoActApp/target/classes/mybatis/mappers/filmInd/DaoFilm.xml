@@ -21,9 +21,9 @@
 	<sql id="sqlFrom">
 		from 
 			FILM FLM
-			left join DOCUMENT DOC on FLM.ID_DOCUMENT = DOC.ID
-			left join ACTOR_FILM ACF on FLM.ID = ACF.ID_FILM
-			left join FAVORIT FAV on FLM.ID = FAV.ID_FILM
+			left join DOCUMENT DOC on DOC.ID = FLM.ID_DOCUMENT
+			left join ACTOR_FILM ACF on ACF.ID_FILM = FLM.ID
+			left join FAVORIT FAV on FAV.ID_FILM = FLM.ID
 	</sql>
 	
 	<sql id="sqlWhere">

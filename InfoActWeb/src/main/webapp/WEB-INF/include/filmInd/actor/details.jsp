@@ -6,89 +6,70 @@
 <jsp:include page="/WEB-INF/common/err.jsp"/>
 
 <div style="margin-top: 20px;">
-
 	<c:if test="${ss.view}">
+		<h1 style="text-align: center; color: #306daa;">${record.nume}</h1>
+		<div style="margin-left: 30px; float:left;">
 		<c:if test="${not empty record.poza}">
 			<img src="${pageContext.request.contextPath}/img/atasamente/${record.document.id}/${record.poza.url}"
-				height="320" width="215">
+				height="210" width="150">
 		</c:if>
 		<c:if test="${empty record.poza}">
 			<img src="${pageContext.request.contextPath}/img/atasamente/default.jpg"
-				height="320" width="215">
+				height="210" width="150">
 		</c:if>
-	</c:if>
-	
-	<table class="tblForm">
-		<tr>
-			<td>Nume</td>
-			<td>
-				<c:if test="${ss.view}">
-					<input type="text" value="${record.nume}" disabled>
-				</c:if>
-				<c:if test="${ss.editable}">
-					<form:input path="nume" cssErrorClass="err" style="width: 300px;"/>
-				</c:if>
-			</td>
-		</tr>
-		<tr>
-			<td>Dt. nastere</td>
-			<td>
-				<c:if test="${ss.view}">
-					<fmt:formatDate var="dtNastere" pattern="dd.MM.yyyy" value="${record.dtNastere}" />
-					<input type="text" value="${dtNastere}" disabled />
-				</c:if>
-				<c:if test="${ss.editable}">
-					<form:input path="dtNastere" class="datepicker" type="text" value="${dtNastere}" cssErrorClass="err" style="width: 300px;"/>
-				</c:if>
-			</td>
-		</tr>
-		<tr>
-			<td>Loc nastere</td>
-			<td>
-				<c:if test="${ss.view}">
-					<input type="text" value="${record.locNastere}" disabled>
-				</c:if>
-				<c:if test="${ss.editable}">
-					<form:input path="locNastere" cssErrorClass="err" style="width: 300px;"/>
-				</c:if>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<p style="margin-bottom: 7px; margin-top: 15px; margin-left: 1px;">Descriere</p>
-				<c:if test="${ss.view}">
-					<textarea disabled style="width: 400px; height: 110px;">${record.descriere}</textarea>
-				</c:if>
-				<c:if test="${ss.editable}">
-					<form:textarea path="descriere" style="width: 400px; height: 200px;"/>
-				</c:if>
-			</td>
-		</tr> 
-	</table>
-	
-	<c:if test="${ss.view}">
-	<br><br><br>
-	
-	<c:if test="${not empty atasamente}">
-		<div style="overflow-x: auto; height: 340px; white-space: nowrap; ">
-			<c:forEach var="imagine" items="${atasamente}">
-				<img src="${pageContext.request.contextPath}/img/atasamente/${record.document.id}/${imagine.url}"
-					height="320" width="215" style="display: inline-block;">
-			</c:forEach>
 		</div>
-		
-		<br><br><br>
+		<fmt:formatDate var="dtNastere" pattern="dd.MM.yyyy" value="${record.dtNastere}" />
+		<div style="margin-left: 205px; color: #808080;">
+			<b>Born: </b>${dtNastere} in ${record.locNastere}.
+		</div>
+		<br><br>
+		<div style="margin-left: 205px; color: #808080;">
+			${record.descriere}
+		</div>
+		<div style="clear: both;"></div>
 	</c:if>
+	
+	<c:if test="${ss.editable}">
+		<table class="tblForm">
+			<tr>
+				<td>Nume</td>
+				<td>
+					<form:input path="nume" cssErrorClass="err" style="width: 300px;"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Dt. nastere</td>
+				<td>
+					<form:input path="dtNastere" class="datepicker" type="text" value="${dtNastere}" cssErrorClass="err" style="width: 300px;"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Loc nastere</td>
+				<td>
+					<form:input path="locNastere" cssErrorClass="err" style="width: 300px;"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<p style="margin-bottom: 7px; margin-top: 15px; margin-left: 1px;">Descriere</p>
+					<form:textarea path="descriere" style="width: 400px; height: 200px;"/>
+				</td>
+			</tr> 
+		</table>
+	</c:if>
+	
+	<br>
 	
 	<c:if test="${empty filme}">
 		<div class="info">Acest actor nu apare in nici un film.</div>
 	</c:if>
 	
 	<c:if test="${not empty filme}">
+		<h1 style="text-align: center; color: #306daa;">Movies</h1>
 		<table class="tblGrid">
 			<tr>
 				<th></th>
-				<th align="left">Nume</th>
+				<th align="left">Film</th>
 				<th align="left">Personaj</th>
 				<th></th>
 			</tr>
@@ -104,8 +85,8 @@
 								height="67" width="45">
 						</c:if>
 					</td>
-					<td align="left"><a>${film.nume}</a></td>
-					<td align="left"><a>${film.personaj}</a></td>
+					<td align="left"><a href="${pageContext.request.contextPath}/mvc/film/view?id=${film.id}">${film.nume}</a></td>
+					<td align="left"><a href="${pageContext.request.contextPath}/mvc/film/view?id=${film.id}">${film.personaj}</a></td>
 					<td align="right">
 						<c:if test="${ss.edit}">
 						<img
@@ -118,5 +99,19 @@
 			</c:forEach>
 		</table>
 	</c:if>
+	
+	<c:if test="${ss.view}">
+	<c:if test="${not empty atasamente}">
+		<br>
+		<h1 style="text-align: center; color: #306daa;">Images</h1>
+		<br>
+		<div style="overflow-x: auto; height: 340px; white-space: nowrap; ">
+			<c:forEach var="imagine" items="${atasamente}">
+				<img src="${pageContext.request.contextPath}/img/atasamente/${record.document.id}/${imagine.url}"
+					height="320" width="215" style="display: inline-block;">
+			</c:forEach>
+		</div>
 	</c:if>
+	</c:if>
+	<br>
 </div>

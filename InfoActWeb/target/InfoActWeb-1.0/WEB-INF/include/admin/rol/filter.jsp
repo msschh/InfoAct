@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div id="divFilter" style="height: 35px;">
-	<div style="float: left; width: 300px;">
+	<div style="float: left; width: 280px;">
 		<table>
 			<tr>
 				<td>Cod</td>
@@ -13,7 +13,7 @@
 		</table>
 	</div>
 	
-	<div style="float: left; width: 300px;">
+	<div style="float: left; width: 280px;">
 		<table>
 			<tr>
 				<td>Nume</td>

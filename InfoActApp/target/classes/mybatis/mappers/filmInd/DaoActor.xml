@@ -21,8 +21,8 @@
 	<sql id="sqlFrom">
 		from 
 			ACTOR ACT
-			left join DOCUMENT DOC on ACT.ID_DOCUMENT = DOC.ID
-			left join ACTOR_FILM ACF on ACT.ID = ACF.ID_ACTOR
+			left join DOCUMENT DOC on DOC.ID = ACT.ID_DOCUMENT
+			left join ACTOR_FILM ACF on ACF.ID_ACTOR = ACT.ID
 	</sql>
 	
 	<sql id="sqlWhere">
